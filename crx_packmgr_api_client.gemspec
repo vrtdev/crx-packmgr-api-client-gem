@@ -27,16 +27,16 @@ $:.push File.expand_path("../lib", __FILE__)
 require "crx_packmgr_api_client/version"
 
 Gem::Specification.new do |s|
-  s.name        = "crx_packmgr_api_client"
+  s.name        = "crx_packmgr_api_client_maintenance"
   s.version     = CrxPackageManager::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Swagger-Codegen"]
   s.email       = ["bryan.stopp@gmail.com"]
-  s.homepage    = "https://github.com/bstopp/crx-packmgr-api-client-gem"
+  s.homepage    = "https://github.com/vrtdev/crx-packmgr-api-client-gem"
   s.summary     = "CRX Package Manager API Ruby Gem"
   s.description = "API for interacting with the CRX Package Manager in AEM."
   s.license     = "Apache-2.0"
-  s.required_ruby_version = ">= 1.9"
+  s.required_ruby_version = ">= 3.0"
 
   s.add_runtime_dependency 'typhoeus', '~> 1.3'
   s.add_runtime_dependency 'json', '~> 2.0'
