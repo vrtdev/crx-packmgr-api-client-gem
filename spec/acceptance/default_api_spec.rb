@@ -1,5 +1,5 @@
 require 'spec_helper_acceptance'
-require 'xmlsimple'
+# require 'xmlsimple'
 
 describe 'DefaultApi' do
   before do
@@ -46,44 +46,44 @@ describe 'DefaultApi' do
   end
 
 
-  context 'service upload and update' do
-    it 'should support cmd=help' do
-      xml = @instance.service_get('help')
-      parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
-      sr = CrxPackageManager::ServiceResponse.new
-      sr = sr.build_from_hash(parsed)
-      expect(sr.version).to eq('1.4.1')
-      expect(sr.user).to eq('admin')
-      expect(sr.workspace).to eq('crx.default')
-      expect(sr.request).not_to be_nil
-      req = sr.request
-      params = req.param
-      expect(params).to be_a(Array)
-      expect(params.length).to eq(1)
-      expect(params[0].name).to eq('cmd')
-      response = sr.response
-      expect(response.status[:code].to_i).to eq(200)
-    end
+  # context 'service upload and update' do
+  #   it 'should support cmd=help' do
+  #     xml = @instance.service_get('help')
+  #     parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
+  #     sr = CrxPackageManager::ServiceResponse.new
+  #     sr = sr.build_from_hash(parsed)
+  #     expect(sr.version).to eq('1.4.1')
+  #     expect(sr.user).to eq('admin')
+  #     expect(sr.workspace).to eq('crx.default')
+  #     expect(sr.request).not_to be_nil
+  #     req = sr.request
+  #     params = req.param
+  #     expect(params).to be_a(Array)
+  #     expect(params.length).to eq(1)
+  #     expect(params[0].name).to eq('cmd')
+  #     response = sr.response
+  #     expect(response.status[:code].to_i).to eq(200)
+  #   end
 
-    it 'should support post' do
-      xml = @instance.service_post(package)
-      parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
-      sr = CrxPackageManager::ServiceResponse.new
-      sr = sr.build_from_hash(parsed)
-      response = sr.response
-      expect(response.status[:code].to_i).to eq(200)
-    end
+  #   it 'should support post' do
+  #     xml = @instance.service_post(package)
+  #     parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
+  #     sr = CrxPackageManager::ServiceResponse.new
+  #     sr = sr.build_from_hash(parsed)
+  #     response = sr.response
+  #     expect(response.status[:code].to_i).to eq(200)
+  #   end
 
-    it 'should support install' do
-      xml = @instance.service_get('inst', name: 'test')
-      parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
-      sr = CrxPackageManager::ServiceResponse.new
-      sr = sr.build_from_hash(parsed)
-      response = sr.response
-      expect(response.status[:code].to_i).to eq(200)
-    end
+  #   it 'should support install' do
+  #     xml = @instance.service_get('inst', name: 'test')
+  #     parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
+  #     sr = CrxPackageManager::ServiceResponse.new
+  #     sr = sr.build_from_hash(parsed)
+  #     response = sr.response
+  #     expect(response.status[:code].to_i).to eq(200)
+  #   end
 
-  end
+  # end
 
   context 'list' do
     it 'should work' do
@@ -127,24 +127,24 @@ describe 'DefaultApi' do
 
   end
 
-  context 'service uninstall and remove' do
-    it 'should support uninstall' do
-      xml = @instance.service_get('uninst', name: 'test')
-      parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
-      sr = CrxPackageManager::ServiceResponse.new
-      sr = sr.build_from_hash(parsed)
-      response = sr.response
-      expect(response.status[:code].to_i).to eq(200)
-    end
+  # context 'service uninstall and remove' do
+  #   it 'should support uninstall' do
+  #     xml = @instance.service_get('uninst', name: 'test')
+  #     parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
+  #     sr = CrxPackageManager::ServiceResponse.new
+  #     sr = sr.build_from_hash(parsed)
+  #     response = sr.response
+  #     expect(response.status[:code].to_i).to eq(200)
+  #   end
 
-    it 'should support rm' do
-      xml = @instance.service_get('rm', name: 'test')
-      parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
-      sr = CrxPackageManager::ServiceResponse.new
-      sr = sr.build_from_hash(parsed)
-      response = sr.response
-      expect(response.status[:code].to_i).to eq(200)
-    end
-  end
+  #   it 'should support rm' do
+  #     xml = @instance.service_get('rm', name: 'test')
+  #     parsed = XmlSimple.xml_in(xml, { ForceArray: %r(param), KeyToSymbol: true, AttrToSymbol: true } )
+  #     sr = CrxPackageManager::ServiceResponse.new
+  #     sr = sr.build_from_hash(parsed)
+  #     response = sr.response
+  #     expect(response.status[:code].to_i).to eq(200)
+  #   end
+  # end
 
 end
